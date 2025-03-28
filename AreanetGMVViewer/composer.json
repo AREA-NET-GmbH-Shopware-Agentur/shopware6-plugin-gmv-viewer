@@ -1,0 +1,41 @@
+{
+    "name": "areanet-gmv-viewer/areanet-gmv-viewer",
+    "description": "Zeigt den jährlichen Gross Merchandise Value (GMV) an.",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "AREA-NET GmbH",
+            "email": "info@area-net.de"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "AreanetGMVViewer\\AreanetGMVViewer",
+        "label": {
+            "de-DE": "GMV Viewer",
+            "en-GB": "GMV Viewer"
+        },
+        "manufacturer": {
+            "de-DE": "AREA-NET GmbH",
+            "en-GB": "AREA-NET GmbH"
+        },
+        "support": {
+            "issues": "https://www.area-net.de",
+            "source": "https://www.area-net.de"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "AreanetGMVViewer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AreanetGMVViewer\\Tests\\": "tests/"
+        }
+    }
+}
