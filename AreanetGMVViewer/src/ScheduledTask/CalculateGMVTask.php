@@ -10,6 +10,6 @@ class CalculateGmvTask extends ScheduledTask{
     }
 
     public static function getDefaultInterval(): int{
-        return 60; // 1Tag ind Sekunden
+        return 86400; // 1Tag in Sekunden
     }
 }
