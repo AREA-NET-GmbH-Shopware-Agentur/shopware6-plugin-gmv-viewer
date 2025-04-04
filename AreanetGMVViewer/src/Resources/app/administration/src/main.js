@@ -1,2 +1,2 @@
 // Import admin module
-import './module/gmv-widget';
+Shopware.Component.register('gmv-table', () => import('./component/gmv-table'));
