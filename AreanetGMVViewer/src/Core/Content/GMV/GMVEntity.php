@@ -1,15 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace AreanetGMVViewer\Core\Content\GMV;
+namespace AreanetGmvViewer\Core\Content\Gmv;
 
 use Shopware\Core\Framework\DataAbstractionLayer\Entity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityIdTrait;
 
-class GMVEntity extends Entity{
+class GmvEntity extends Entity{
     use EntityIdTrait;
 
+    /**
+     * @var int
+     */
     protected int $year;
-    protected int $gmv;
+
+    /**
+     * @var float
+     */
+    protected float $gmv;
 
     public function getYear(): int{
         return $this->year;
@@ -19,12 +26,11 @@ class GMVEntity extends Entity{
         $this->year = $year;
     }
 
-    public function getGmv(): int{
+    public function getGmv(): float{
         return $this->gmv;
     }
 
-    public function setGmv(int $gmv): void{
+    public function setGmv(float $gmv): void{
         $this->gmv = $gmv;
     }
-
 }

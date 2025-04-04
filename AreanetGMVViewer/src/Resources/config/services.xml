@@ -4,43 +4,22 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="shopware.entity.areanet_gmv.class">AreanetGMVViewer\Core\Content\GMV\GMVDefinition</parameter>
-    </parameters>
-
     <services>
-        <service id="AreanetGMVViewer\Service\GMVCalculateService">
+
+        <service id="AreanetGmvViewer\Core\Content\Gmv\GmvDefinition">
+            <tag name="shopware.entity.definition" entity="areanet_gmv" />
+        </service>
+
+        <service id="AreanetGmvViewer\ScheduledTask\CalculateGmvTask">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+        <service id="AreanetGmvViewer\ScheduledTask\CalculateGmvTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
             <argument type="service" id="order.repository"/>
-            <argument type="service" id="AreanetGMVViewer\Core\Content\GMV\GMVDefinition.repository"/>
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>
-            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="areanet_gmv.repository"/>
+            <tag name="messenger.message_handler" />
         </service>
 
-        <service id="AreanetGMVViewer\ScheduledTask\CalculateGMVTask">
-        </service>
-
-        <service id="AreanetGMVViewer\ScheduledTask\CalculateGMVTaskHandler">
-            <argument type="service" id="AreanetGMVViewer\Service\GMVCalculateService"/>
-            <tag name="scheduled.task"/>
-            <tag name="messenger.message_handler" handler="run"/>
-        </service>
-
-        <service id="AreanetGMVViewer\Command\CalculateGMVCommand">
-            <argument type="service" id="AreanetGMVViewer\Service\GMVCalculateService"/>
-            <tag name="console.command"/>
-        </service>
-
-        <service id="AreanetGMVViewer\Core\Content\GMV\GMVDefinition" public="false">
-            <tag name="shopware.entity.definition" entity="areanet_gmv"/>
-        </service>
-        <service id="AreanetGMVViewer\Core\Content\GMV\GMVDefinition.repository" class="Shopware\Core\Framework\DataAbstractionLayer\EntityRepository">
-            <argument>%shopware.entity.areanet_gmv.class%</argument>
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-            <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
-            <argument type="service" id="Shopware\Core\Content\ImportExport\DataAbstractionLayer\Serializer\SerializerRegistry"/>
-            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearcherInterface"/>
-        </service>
     </services>
 </container>
