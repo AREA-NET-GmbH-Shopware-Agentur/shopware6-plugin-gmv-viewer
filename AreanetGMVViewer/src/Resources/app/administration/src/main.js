@@ -1,2 +1,2 @@
-// Import admin module
-Shopware.Component.register('gmv-table', () => import('./component/gmv-table'));
+// <plugin-root>/src/Resources/app/administration/src/main.js
+import './module/areanet-gmv';
