@@ -1,0 +1,37 @@
+{% block areanet_gmv_table %}
+    <sw-page class="an-gmv-table">
+        <template #title>
+            {{ $tc('areanet-gmv.general.mainTitle') }}
+        </template>
+
+        <template #smart-bar-actions>
+            </template>
+
+        <template #content>
+            <sw-card v-if="isLoading">
+                <sw-loader></sw-loader>
+            </sw-card>
+
+            <sw-card v-else-if="error">
+                <sw-alert variant="error">{{ error }}</sw-alert>
+            </sw-card>
+
+            <sw-card v-else-if="result && result.total > 0">
+                <sw-data-grid
+                    :columns="[
+                        { property: 'year', label: $tc('areanet-gmv.list.columnYear') },
+                        { property: 'month', label: $tc('areanet-gmv.list.columnMonth') },
+                        { property: 'gmv', label: $tc('areanet-gmv.list.columnGmv') }
+                        {# Füge hier weitere Spalten hinzu, falls benötigt #}
+                    ]"
+                    :items="result"
+                >
+                </sw-data-grid>
+            </sw-card>
+
+            <sw-card v-else>
+                {{ $tc('areanet-gmv.general.noData') }}
+            </sw-card>
+        </template>
+    </sw-page>
+{% endblock %}

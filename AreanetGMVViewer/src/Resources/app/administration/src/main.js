@@ -1,2 +1,2 @@
-// <plugin-root>/src/Resources/app/administration/src/main.js
-import './module/areanet-gmv';
+Shopware.Component.register('an-gmv-table', () => import('./component/an-gmv-table'));
+import './module/sw-dashboard/';

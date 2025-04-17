@@ -1,0 +1,11 @@
+{% block sw_dashboard_index %}
+    {{ parent() }}
+
+    <sw-card class="an-gmv-dashboard-card">
+        <template #title>
+            {{ $tc('areanet-gmv.general.dashboardTitle') }}
+        </template>
+
+        <an-gmv-table></an-gmv-table>
+    </sw-card> 
+{% endblock %}

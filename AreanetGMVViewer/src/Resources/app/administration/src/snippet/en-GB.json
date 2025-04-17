@@ -1,0 +1,15 @@
+{
+    "areanet-gmv": {
+        "general": {
+            "mainTitle": "GMV Overview",
+            "dashboardTitle": "GMV of the last 3 years",
+            "noData": "No GMV data available yet."
+        },
+        "list": {
+            "columnYear": "Year",
+            "columnMonth": "Month",
+            "columnGmv": "GMV"
+
+        }
+    }
+}
