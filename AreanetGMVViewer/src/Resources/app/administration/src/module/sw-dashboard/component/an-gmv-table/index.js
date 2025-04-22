@@ -1,19 +1,11 @@
 import template from './an-gmv-table.html.twig';
 
-import deDE from '../../snippet/de-DE.json';
-import enGB from '../../snippet/en-GB.json';
-
 const { Criteria } = Shopware.Data;
 
-export default Shopware.Component.wrapComponentConfig('an-gmv-table', {
+Shopware.Component.register('an-gmv-table', {
     inject: ['repositoryFactory'],
 
     template: template,
-
-    snippets: {
-        'de-DE': deDE,
-        'en-GB': enGB
-    },
 
     data: function () {
         return {
@@ -33,15 +25,15 @@ export default Shopware.Component.wrapComponentConfig('an-gmv-table', {
         this.fetchLastThreeYearsGmv();
     },
 
-    methods() {
-        fetchLastThreeYearsGmv : async () => {
+    methods: {
+        async fetchLastThreeYearsGmv() {
             this.isLoading = true;
             this.error = null;
             const currentYear = new Date().getFullYear();
             const yearstoFetch = [currentYear - 2, currentYear - 1, currentYear];
 
             const criteria = new Criteria();
-            criteria.adddFilter(Criteria.equalsAny('year', yearstoFetch));
+            criteria.addFilter(Criteria.equalsAny('year', yearstoFetch));
             criteria.addSorting(Criteria.sort('year', 'DESC'));
 
             try{
@@ -52,6 +44,9 @@ export default Shopware.Component.wrapComponentConfig('an-gmv-table', {
             } finally {
                 this.isLoading = false;
             }
+
+            console.log(this.error);
+            console.log(this.result);
         }
     }
 

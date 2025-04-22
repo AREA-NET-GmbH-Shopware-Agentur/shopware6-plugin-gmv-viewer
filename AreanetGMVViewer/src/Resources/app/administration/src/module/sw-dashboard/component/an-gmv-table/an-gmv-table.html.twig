@@ -1,0 +1,31 @@
+{% block areanet_gmv_table %}
+<sw-card class="an-gmv-dashboard-card">
+    <template #title>
+        {{ $tc('areanet-gmv.general.dashboardTitle') }}
+    </template>
+
+    <div v-if="error">
+        <sw-alert variant="error">{{ error }}</sw-alert>
+    </div>
+
+    <div v-else-if="result && result.total > 0">
+        <sw-data-grid
+            :columns="[
+                { property: 'year', label: $tc('areanet-gmv.list.columnYear') },
+                { property: 'gmv', label: $tc('areanet-gmv.list.columnGmv') }
+            ]"
+            :dataSource="result"
+            :showSelection="false"
+            :show-actions="false"
+            :isLoading="isLoading"
+
+        >
+        </sw-data-grid>
+    </div>
+
+    <div v-else>
+        {{ $tc('areanet-gmv.general.noData') }}
+    </div>
+
+</sw-card>
+{% endblock %}
