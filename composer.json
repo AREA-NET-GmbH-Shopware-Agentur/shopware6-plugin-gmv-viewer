@@ -1,0 +1,41 @@
+{
+    "name": "areanet/gmv-viewer",
+    "description": "Shopware 6 plugin to display the GMV of the last 3 years in the dashboard.",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "authors": [
+        {
+            "name": "AREA-NET GmbH",
+            "homepage": "https://www.area-net.de"
+        }
+    ],
+    "extra": {
+        "plugin-icon": "src/Resources/plugin.png",
+        "shopware-plugin-class": "AreanetGmvViewer\\AreanetGmvViewer",
+        "label": {
+            "de-DE": "GMV Viewer",
+            "en-GB": "GMV Viewer"
+        },
+        "description": {
+            "de-DE": "Shopware 6 Plugin, um den GMV der letzten 3 Jahre im Dashboard anzuzeigen.",
+            "en-GB": "Shopware 6 plugin to display the GMV of the last 3 years in the dashboard."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.area-net.de",
+            "en-GB": "https://www.area-net.de"
+        },
+        "supportLink": {
+            "de-DE": "https://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-gmv-viewer/issues",
+            "en-GB": "hhttps://github.com/AREA-NET-GmbH-Shopware-Agentur/shopware6-plugin-gmv-viewer/issues"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "AreanetGmvViewer\\": "src/"
+        }
+    }
+}

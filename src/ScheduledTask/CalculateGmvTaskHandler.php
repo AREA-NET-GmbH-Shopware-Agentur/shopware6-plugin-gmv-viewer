@@ -58,27 +58,9 @@ class CalculateGmvTaskHandler extends ScheduledTaskHandler{
 
     private function getOrdersForYear(int $year, Context $context): \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult{
         $criteria = new Criteria();
-        $criteria->addFilter(new NotFilter(MultiFilter::CONNECTION_AND, [
-            new EqualsAnyFilter('stateMachineState.technicalName', [
-                'returned',
-                'cancelled',
-            ]),
-        ]));
         $criteria->addFilter(new \Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\RangeFilter('orderDate', [
             'gte' => (new \DateTimeImmutable())->setDate($year, 1, 1)->setTime(0, 0, 0)->format('Y-m-d H:i:s'),
             'lt' => (new \DateTimeImmutable())->setDate($year + 1, 1, 1)->setTime(0, 0, 0)->format('Y-m-d H:i:s'),
-        ]));
-
-        return $this->orderRepository->search($criteria, $context);
-    }
-
-    private function getOrders(Context $context): \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult{
-        $criteria = new Criteria();
-        $criteria->addFilter(new NotFilter(MultiFilter::CONNECTION_AND, [
-            new EqualsAnyFilter('stateMachineState.technicalName', [
-                'returned',
-                'cancelled',
-            ]),
         ]));
 
         return $this->orderRepository->search($criteria, $context);
@@ -90,6 +72,7 @@ class CalculateGmvTaskHandler extends ScheduledTaskHandler{
         foreach ($orders as $order) {
             if ($order->getOrderDate() instanceof \DateTimeImmutable) {
                 $gmv += $order->getAmountNet();
+
             }
         }
 

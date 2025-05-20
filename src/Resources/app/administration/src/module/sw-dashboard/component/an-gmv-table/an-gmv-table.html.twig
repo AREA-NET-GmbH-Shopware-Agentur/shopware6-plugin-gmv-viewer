@@ -12,7 +12,7 @@
         <sw-data-grid
             :columns="[
                 { property: 'year', label: $tc('areanet-gmv.list.columnYear') },
-                { property: 'gmv', label: $tc('areanet-gmv.list.columnGmv') }
+                { property: 'gmv', label: $tc('areanet-gmv.list.columnGmv'), align: 'right', }
             ]"
             :dataSource="result"
             :showSelection="false"
@@ -20,6 +20,9 @@
             :isLoading="isLoading"
 
         >
+            <template #column-gmv="{ item }">
+                {{ currencyFilter(item.gmv, 'EUR') }}
+            </template>
         </sw-data-grid>
     </div>
 

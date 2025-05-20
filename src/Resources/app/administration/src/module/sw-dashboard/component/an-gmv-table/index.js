@@ -16,6 +16,10 @@ Shopware.Component.register('an-gmv-table', {
     },
 
     computed: {
+        currencyFilter() {
+            return Shopware.Filter.getByName('currency');
+        },
+
         gmvRepository() {
             return this.repositoryFactory.create('areanet_gmv');
         }
