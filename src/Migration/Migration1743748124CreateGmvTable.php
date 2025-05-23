@@ -28,7 +28,4 @@ SQL;
         $connection->executeStatement($sql);
     }
 
-    public function updateDestructive(Connection $connection): void{
-        $connection->executeStatement("DROP TABLE IF EXISTS `areanet_gmv`;");
-    }
 }

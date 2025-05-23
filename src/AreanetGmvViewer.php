@@ -2,7 +2,6 @@
 
 namespace AreanetGmvViewer;
 
-use AreanetGmvViewer\Migration\Migration1743748124CreateGmvTable;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
@@ -21,8 +20,6 @@ class AreanetGmvViewer extends Plugin{
         }
 
         $connection = $this->container->get(Connection::class);
-
-        $migration = new Migration1743748124CreateGmvTable();
-        $migration->updateDestructive($connection);
+        $connection->executeStatement("DROP TABLE IF EXISTS `areanet_gmv`");
     }
 }
