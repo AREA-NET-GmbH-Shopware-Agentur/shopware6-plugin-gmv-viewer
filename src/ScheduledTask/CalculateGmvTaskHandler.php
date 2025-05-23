@@ -2,6 +2,7 @@
 
 namespace AreanetGmvViewer\ScheduledTask;
 
+use Shopware\Core\Checkout\Cart\Price\CashRounding;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -21,7 +22,8 @@ class CalculateGmvTaskHandler extends ScheduledTaskHandler{
     public function __construct(
         EntityRepository $scheduledTaskRepository,
         EntityRepository $orderRepository,
-        EntityRepository $gmvRepository
+        EntityRepository $gmvRepository,
+        private CashRounding $rounding
     ) {
         parent::__construct($scheduledTaskRepository);
         $this->orderRepository = $orderRepository;
@@ -71,8 +73,7 @@ class CalculateGmvTaskHandler extends ScheduledTaskHandler{
 
         foreach ($orders as $order) {
             if ($order->getOrderDate() instanceof \DateTimeImmutable) {
-                $gmv += $order->getAmountNet();
-
+                $gmv += $order->getAmountNet() / $order->getCurrencyFactor();
             }
         }
 
@@ -83,6 +84,7 @@ class CalculateGmvTaskHandler extends ScheduledTaskHandler{
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('year', $year));
         $existingGmv = $this->gmvRepository->search($criteria, $context)->first();
+        $gmv = $this->rounding->cashRound($gmv, $context->getRounding());
 
         if ($existingGmv) {
             $this->gmvRepository->update([['id' => $existingGmv->getId(), 'gmv' => $gmv]], $context);
