@@ -2,7 +2,7 @@
     "name": "areanet/gmv-viewer",
     "description": "Shopware 6 plugin to display the GMV of the last 3 years in the dashboard.",
     "type": "shopware-platform-plugin",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "license": "MIT",
     "require": {
         "shopware/core": "~6.6.0"
