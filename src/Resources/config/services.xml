@@ -16,6 +16,7 @@
 
         <service id="AreanetGmvViewer\ScheduledTask\CalculateGmvTaskHandler">
             <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="logger"/>
             <argument type="service" id="order.repository"/>
             <argument type="service" id="areanet_gmv.repository"/>
             <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>

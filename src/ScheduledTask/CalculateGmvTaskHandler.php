@@ -2,6 +2,7 @@
 
 namespace AreanetGmvViewer\ScheduledTask;
 
+use Psr\Log\LoggerInterface;
 use Shopware\Core\Checkout\Cart\Price\CashRounding;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
@@ -21,11 +22,12 @@ class CalculateGmvTaskHandler extends ScheduledTaskHandler{
 
     public function __construct(
         EntityRepository $scheduledTaskRepository,
+        LoggerInterface $logger,
         EntityRepository $orderRepository,
         EntityRepository $gmvRepository,
         private CashRounding $rounding
     ) {
-        parent::__construct($scheduledTaskRepository);
+        parent::__construct($scheduledTaskRepository, $logger);
         $this->orderRepository = $orderRepository;
         $this->gmvRepository = $gmvRepository;
     }

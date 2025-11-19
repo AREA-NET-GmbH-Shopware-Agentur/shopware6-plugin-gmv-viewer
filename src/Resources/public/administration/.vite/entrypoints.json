@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/areanetgmvviewer/administration/",
+  "entryPoints": {
+    "areanet-gmv-viewer": {
+      "css": [],
+      "dynamic": [
+        "/bundles/areanetgmvviewer/administration/assets/index-68gF4zrm.js"
+      ],
+      "js": [
+        "/bundles/areanetgmvviewer/administration/assets/areanet-gmv-viewer-DC5UXhTX.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

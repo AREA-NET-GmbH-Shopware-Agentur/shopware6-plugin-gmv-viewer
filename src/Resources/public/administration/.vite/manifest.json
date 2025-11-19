@@ -1,0 +1,17 @@
+{
+  "main.js": {
+    "file": "assets/areanet-gmv-viewer-DC5UXhTX.js",
+    "name": "areanet-gmv-viewer",
+    "src": "main.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "module/sw-dashboard/page/sw-dashboard-index/index.js"
+    ]
+  },
+  "module/sw-dashboard/page/sw-dashboard-index/index.js": {
+    "file": "assets/index-68gF4zrm.js",
+    "name": "index",
+    "src": "module/sw-dashboard/page/sw-dashboard-index/index.js",
+    "isDynamicEntry": true
+  }
+}
